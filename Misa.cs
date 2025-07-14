@@ -11,5 +11,14 @@ namespace ConsoleApp1
     {
         [Index(0)]
         public string KaiCode { get; set; }
+
+        [Index(4)]
+        public string DenNo { get; set; }
+
+        [Index(5)]
+        public string DenId { get; set; }
+
+        [Index(9)]
+        public string RecordKbn { get; set; }
     }
 }

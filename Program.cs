@@ -1,5 +1,9 @@
-﻿using System;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +16,15 @@ namespace ConsoleApp1
         {
             var filePath = "misa1.csv";
             var csvData = FileHelper.ReadCsv<Misa>(filePath, Encoding.UTF8, false).ToList();
+            var misaData = CreateMisa(csvData);
 
-            foreach (var misa in csvData)
-            {
-                Console.WriteLine($"会社コード: {misa.KaiCode}, RowIdx: {misa.RowIndex}, Line: {misa.Line}");
-            }
+            FileHelper.WriteCsv(misaData, "misaOutput.csv");
+        }
+
+        private static IEnumerable<MisaDenData> CreateMisa(List<Misa> csvData)
+        {
+            // CSVデータを伝票単位に
+            return csvData.GroupBy(d => d.DenNo).Select(g => new MisaDenData(g.ToList()));
         }
     }
 }
