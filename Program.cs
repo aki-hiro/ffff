@@ -1,9 +1,5 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +10,12 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            var filePath = "misa1.csv";
+            var filePath = @"C:\work\terashima\MISA1.csv";
             var csvData = FileHelper.ReadCsv<Misa>(filePath, Encoding.UTF8, false).ToList();
+
             var misaData = CreateMisa(csvData);
 
-            FileHelper.WriteCsv(misaData, "misaOutput.csv");
+            FileHelper.WriteCsv(misaData, @"C:\work\terashima\misaOutput.csv");
         }
 
         private static IEnumerable<MisaDenData> CreateMisa(List<Misa> csvData)

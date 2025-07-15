@@ -166,7 +166,7 @@ namespace ConsoleApp1
         　/// <param name="hasHeader">ヘッダありかどうか</param>
         　/// <param name="delimiter">区切り文字</param>
         　/// <returns></returns>
-        public static bool WriteCsv<T>(IEnumerable<T> list, string filePath, Encoding encoding, bool isAppend = false, bool hasHeader = false, string delimiter = ",")
+        public static bool WriteCsv<T>(IEnumerable<T> list, string filePath, Encoding encoding, bool isAppend = false, bool hasHeader = true, string delimiter = ",")
             where T : class
         {
             try
